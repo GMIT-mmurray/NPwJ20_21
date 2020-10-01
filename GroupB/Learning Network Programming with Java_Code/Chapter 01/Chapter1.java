@@ -18,8 +18,8 @@ public class Chapter1 {
 
     public static void main(String[] args) {
   //     inetAddressExamples();
-  //    nioExamples();
-        socketExamples();
+         nioExamples();
+  //       socketExamples();
   //     urlConnectionExample();
     }
 
@@ -63,7 +63,7 @@ public class Chapter1 {
             socketChannel.write(header);
 
             ByteBuffer buffer;
-            buffer = ByteBuffer.allocate(64);
+            buffer = ByteBuffer.allocate(64000);
             System.out.println("buffer: " + buffer);
             int bytesRead = socketChannel.read(buffer);
             System.out.println("bytesRead: " + bytesRead);
