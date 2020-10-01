@@ -19,8 +19,8 @@ public class Chapter1 {
     public static void main(String[] args) {
   //     inetAddressExamples();
   //    nioExamples();
-  //      socketExamples();
-        urlConnectionExample();
+        socketExamples();
+  //     urlConnectionExample();
     }
 
     private static void displayInetAddressInformation(InetAddress address) {
@@ -34,10 +34,10 @@ public class Chapter1 {
 
     private static void inetAddressExamples() {
         try {
-            InetAddress address = InetAddress.getByName("86.40.80.230");
+            InetAddress address = InetAddress.getByName("gmit.ie");
             System.out.println(address);
             displayInetAddressInformation(address);
-            address = InetAddress.getByName("193.1.204.215");
+            address = InetAddress.getByName("gmit.ie");
             System.out.println(address);
             address = InetAddress.getLocalHost();
             System.out.println(address);
