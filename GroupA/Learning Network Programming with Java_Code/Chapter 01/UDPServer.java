@@ -22,7 +22,7 @@ class UDPServer {
                 InetAddress address = receivePacket.getAddress();
                 int clientPortNumber = receivePacket.getPort();
 
-//                System.out.println("From: " + address + ":" + port);
+                System.out.println("From: " + address + ":" + clientPortNumber);
                 System.out.println("Message: " + message);
 
 //                String capitalizedSentence = message.toUpperCase();
