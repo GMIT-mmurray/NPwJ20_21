@@ -18,9 +18,9 @@ public class Chapter1 {
 
     public static void main(String[] args) {
   //     inetAddressExamples();
-         nioExamples();
+  //       nioExamples();
   //       socketExamples();
-  //     urlConnectionExample();
+       urlConnectionExample();
     }
 
     private static void displayInetAddressInformation(InetAddress address) {
@@ -124,7 +124,7 @@ public class Chapter1 {
             URLConnection urlConnection = url.openConnection();
             InputStream inputStream = urlConnection.getInputStream();
             ReadableByteChannel channel = Channels.newChannel(inputStream);
-            ByteBuffer buffer = ByteBuffer.allocate(64);
+            ByteBuffer buffer = ByteBuffer.allocate(20);
             String line = null;
             while (channel.read(buffer) > 0) {
                 System.out.println("---" + new String(buffer.array()));
