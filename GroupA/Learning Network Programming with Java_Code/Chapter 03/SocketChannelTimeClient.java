@@ -1,4 +1,4 @@
-package packt;
+
 
 import java.io.IOException;
 import java.net.InetSocketAddress;
@@ -24,6 +24,7 @@ public class SocketChannelTimeClient {
                 while (byteBuffer.hasRemaining()) {
                     System.out.print((char) byteBuffer.get());
                 }
+                byteBuffer.clear();
                 System.out.println();
                 bytesRead = socketChannel.read(byteBuffer);
             }

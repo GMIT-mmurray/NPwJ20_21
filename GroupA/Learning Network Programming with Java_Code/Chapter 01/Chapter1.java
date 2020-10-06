@@ -71,7 +71,7 @@ public class Chapter1 {
             if (bytesRead > 0) {
                 buffer.flip();
                 while (buffer.hasRemaining()) {
-                    System.out.println("--" + buffer.get());
+                    System.out.println((char) buffer.get());
                 }
             }
         } catch (IOException ex) {
