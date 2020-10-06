@@ -1,9 +1,5 @@
-package packt;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
+import java.io.*;
 import java.net.InetAddress;
 import java.net.InetSocketAddress;
 import java.net.MalformedURLException;
@@ -21,10 +17,10 @@ import java.util.logging.Logger;
 public class Chapter1 {
 
     public static void main(String[] args) {
-        inetAddressExamples();
-//        nioExamples();
-//        socketExamples();
-//        urlConnectionExample();
+        //     inetAddressExamples();
+        //       nioExamples();
+        //       socketExamples();
+        urlConnectionExample();
     }
 
     private static void displayInetAddressInformation(InetAddress address) {
@@ -38,10 +34,10 @@ public class Chapter1 {
 
     private static void inetAddressExamples() {
         try {
-            InetAddress address = InetAddress.getByName("www.packtpub.com");
+            InetAddress address = InetAddress.getByName("gmit.ie");
             System.out.println(address);
             displayInetAddressInformation(address);
-            address = InetAddress.getByName("83.166.169.231");
+            address = InetAddress.getByName("gmit.ie");
             System.out.println(address);
             address = InetAddress.getLocalHost();
             System.out.println(address);
@@ -53,7 +49,7 @@ public class Chapter1 {
 
     private static void nioExamples() {
         try {
-            InetAddress address = InetAddress.getByName("packtpub.com");
+            InetAddress address = InetAddress.getByName("www.google.com");
             SocketChannel socketChannel = SocketChannel.open();
             socketChannel.connect(new InetSocketAddress(address, 80));
             while (!socketChannel.finishConnect()) {
@@ -62,16 +58,19 @@ public class Chapter1 {
             System.out.println(socketChannel);
             System.out.println(socketChannel.isConnected());
             System.out.println(socketChannel.isBlocking());
+            String request = "GET / HTTP/1.1\nHost: www.google.com\n\n";
+            ByteBuffer header = ByteBuffer.wrap(request.getBytes("US-ASCII"));
+            socketChannel.write(header);
 
             ByteBuffer buffer;
-            buffer = ByteBuffer.allocate(64);
+            buffer = ByteBuffer.allocate(64000);
             System.out.println("buffer: " + buffer);
             int bytesRead = socketChannel.read(buffer);
             System.out.println("bytesRead: " + bytesRead);
             if (bytesRead > 0) {
                 buffer.flip();
                 while (buffer.hasRemaining()) {
-                    System.out.println((char) buffer.get());
+                    System.out.print((char)(buffer.get()));
                 }
             }
         } catch (IOException ex) {
@@ -87,12 +86,17 @@ public class Chapter1 {
             InputStream input;
             input = socket.getInputStream();
             BufferedReader br = new BufferedReader(new InputStreamReader(input));
-            while (!br.ready()) {
-            }
+            PrintWriter out =
+                    new PrintWriter(socket.getOutputStream(), true);
+            out.println("GET / HTTP/1.1\nHost: www.google.com\n\n");
+
+
+//            while (!br.ready()) {
+//            }
             String line = br.readLine();
             System.out.println("First - " + line);
             while ((line = br.readLine()) != null) {
-                System.out.println("Each - " + line);
+                System.out.println(line);
             }
             System.out.println("Done");
         } catch (UnknownHostException ex) {
@@ -115,12 +119,12 @@ public class Chapter1 {
 //            br.close();
 
             // Channel
-            
+
             System.out.println("Channel Example");
             URLConnection urlConnection = url.openConnection();
             InputStream inputStream = urlConnection.getInputStream();
             ReadableByteChannel channel = Channels.newChannel(inputStream);
-            ByteBuffer buffer = ByteBuffer.allocate(64);
+            ByteBuffer buffer = ByteBuffer.allocate(20);
             String line = null;
             while (channel.read(buffer) > 0) {
                 System.out.println("---" + new String(buffer.array()));
