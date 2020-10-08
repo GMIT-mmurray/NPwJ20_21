@@ -1,5 +1,3 @@
-package packt;
-
 import java.io.IOException;
 import java.net.InetSocketAddress;
 import java.net.SocketAddress;
@@ -18,14 +16,21 @@ public class SocketChannelTimeClient {
         SocketAddress address = new InetSocketAddress("127.0.0.1", 5000);
         try (SocketChannel socketChannel = SocketChannel.open(address)) {
             ByteBuffer byteBuffer = ByteBuffer.allocate(64);
-            int bytesRead = socketChannel.read(byteBuffer);
-            while (bytesRead > 0) {
-                byteBuffer.flip();
-                while (byteBuffer.hasRemaining()) {
-                    System.out.print((char) byteBuffer.get());
-                }
-                System.out.println();
+            // displayByteBuffer(byteBuffer);
+            int bytesRead;
+            while (true) {
                 bytesRead = socketChannel.read(byteBuffer);
+                while (bytesRead > 0) {
+                    byteBuffer.flip();
+                    //displayByteBuffer(byteBuffer);
+                    while (byteBuffer.hasRemaining()) {
+                        System.out.print((char) byteBuffer.get());
+                    }
+                    byteBuffer.clear();
+                    bytesRead = 0;
+                    System.out.println();
+                    //bytesRead = socketChannel.read(byteBuffer);
+                }
             }
         } catch (IOException ex) {
             ex.printStackTrace();
