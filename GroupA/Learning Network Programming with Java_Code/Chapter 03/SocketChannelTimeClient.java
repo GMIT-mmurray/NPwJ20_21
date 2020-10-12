@@ -18,15 +18,18 @@ public class SocketChannelTimeClient {
         SocketAddress address = new InetSocketAddress("127.0.0.1", 5000);
         try (SocketChannel socketChannel = SocketChannel.open(address)) {
             ByteBuffer byteBuffer = ByteBuffer.allocate(64);
-            int bytesRead = socketChannel.read(byteBuffer);
-            while (bytesRead > 0) {
-                byteBuffer.flip();
-                while (byteBuffer.hasRemaining()) {
-                    System.out.print((char) byteBuffer.get());
+            int bytesRead = 0;
+            while(true) {
+                 bytesRead = socketChannel.read(byteBuffer);
+                while (bytesRead > 0) {
+                    byteBuffer.flip();
+                    while (byteBuffer.hasRemaining()) {
+                        System.out.print((char) byteBuffer.get());
+                    }
+                    byteBuffer.clear();
+                    System.out.println();
+                    bytesRead = 0;
                 }
-                byteBuffer.clear();
-                System.out.println();
-                bytesRead = socketChannel.read(byteBuffer);
             }
         } catch (IOException ex) {
             ex.printStackTrace();

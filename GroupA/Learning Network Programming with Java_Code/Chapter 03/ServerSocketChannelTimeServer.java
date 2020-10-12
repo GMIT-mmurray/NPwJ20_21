@@ -13,16 +13,16 @@ public class ServerSocketChannelTimeServer {
         try {
             ServerSocketChannel serverSocketChannel = ServerSocketChannel.open();
             serverSocketChannel.socket().bind(new InetSocketAddress(5000));
-            while (true) {
-                System.out.println("Waiting for request ...");
-                SocketChannel socketChannel
-                        = serverSocketChannel.accept();
 
+            System.out.println("Waiting for request ...");
+            SocketChannel socketChannel
+                        = serverSocketChannel.accept();
+            ByteBuffer buf = ByteBuffer.allocate(64);
+            while (true) {
                 if (socketChannel != null) {
                     String dateAndTimeMessage = "Date: " + 
                             new Date(System.currentTimeMillis());
 
-                    ByteBuffer buf = ByteBuffer.allocate(64);
                     // If buffer is not large enough: BufferOverflowException
                     buf.put(dateAndTimeMessage.getBytes());
                     buf.flip();
@@ -30,9 +30,11 @@ public class ServerSocketChannelTimeServer {
                         socketChannel.write(buf);
                     }
                     System.out.println("Sent: " + dateAndTimeMessage);
+                    buf.flip();
+                    Thread.sleep(1000);
                 }
             }
-        } catch (IOException ex) {
+        } catch (IOException | InterruptedException ex) {
             ex.printStackTrace();
         }
     }

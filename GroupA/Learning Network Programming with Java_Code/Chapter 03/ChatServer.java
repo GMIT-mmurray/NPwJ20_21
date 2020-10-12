@@ -40,6 +40,8 @@ public class ChatServer {
 //                        System.out.println("Message: "
 //                                + HelperMethods.receiveFixedLengthMessage(socketChannel));
                             System.out.println("Message: " + HelperMethods.receiveMessage(socketChannel));
+                            // If the message is  Client terminating ... stop the Server
+
                     }
                 }
             }

@@ -23,6 +23,7 @@ public class ChatClient {
 //                System.out.println("Message: " 
 //                        + HelperMethods.receiveFixedLengthMessage(
 //                                socketChannel));
+                // If the message is  Server terminating ... stop the client
                 System.out.print("> ");
                 message = scanner.nextLine();
                 if (message.equalsIgnoreCase("quit")) {
