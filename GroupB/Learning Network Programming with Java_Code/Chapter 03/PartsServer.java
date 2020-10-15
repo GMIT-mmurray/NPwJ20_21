@@ -22,6 +22,7 @@ public class PartsServer {
                 System.out.println("Waiting for client ...");
                 SocketChannel socketChannel
                         = serverSocketChannel.accept();
+                System.out.printf("Client Thread "+Thread.currentThread().getName());
                 new Thread(new ClientHandler(socketChannel)).start();
             }
         } catch (IOException ex) {

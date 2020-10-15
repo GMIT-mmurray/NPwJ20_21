@@ -7,7 +7,7 @@ public class ClientHandler implements Runnable{
     private final SocketChannel socketChannel;
 
     public ClientHandler(SocketChannel socketChannel) {
-        this.socketChannel = socketChannel;
+                this.socketChannel = socketChannel;
     }
 
     public void run() {
@@ -19,6 +19,7 @@ public class ClientHandler implements Runnable{
                 break;
             } else {
                 Float price = PartsServer.getPrice(partName);
+                System.out.printf("Client Thread "+Thread.currentThread().getName());
                 HelperMethods.sendMessage(socketChannel, "" + price);
             }
         }

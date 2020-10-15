@@ -27,21 +27,22 @@ public class ChatServer {
                     System.out.print("> ");
                     message = scanner.nextLine();
                     if (message.equalsIgnoreCase("quit")) {
-//                        HelperMethods.sendFixedLengthMessage(
-//                                socketChannel, "Server terminating");
-                            HelperMethods.sendMessage(
-                                socketChannel, "Server terminating");
+                        HelperMethods.sendFixedLengthMessage(
+                               socketChannel, "Server terminating");
+                           // HelperMethods.sendMessage(
+                            //    socketChannel, "Server terminating");
+                            //close channel SSC & SC
                         running = false;
                         break;
                     } else {
-//                        HelperMethods.sendFixedLengthMessage(
-//                                socketChannel, message);
-                            HelperMethods.sendMessage(socketChannel, message);
+                        HelperMethods.sendFixedLengthMessage(
+                               socketChannel, message);
+  //                          HelperMethods.sendMessage(socketChannel, message);
                         // Receive message
                         System.out.println("Waiting for message from client ...");
-//                        System.out.println("Message: "
-//                                + HelperMethods.receiveFixedLengthMessage(socketChannel));
-                            System.out.println("Message: " + HelperMethods.receiveMessage(socketChannel));
+                        System.out.println("Message: " + HelperMethods.receiveFixedLengthMessage(socketChannel));
+  //                          System.out.println("Message: " + HelperMethods.receiveMessage(socketChannel));
+                            // Check if message == 'Client terminating' Dont comm with client again/close socket and channel ... go back to accept()
                     }
                 }
             }

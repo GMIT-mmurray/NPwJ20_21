@@ -8,6 +8,7 @@ public class HelperMethods {
 
     public static void sendFixedLengthMessage(SocketChannel socketChannel, String message) {
         try {
+            //ByteBuffer buffer = ByteBuffer.allocate(message.lenght());
             ByteBuffer buffer = ByteBuffer.allocate(64);
             buffer.put(message.getBytes());
             buffer.flip();
@@ -24,11 +25,13 @@ public class HelperMethods {
         String message = "";
         try {
             ByteBuffer byteBuffer = ByteBuffer.allocate(64);
+            //while (socketChannel.read(byteBuffer) > 0)
             socketChannel.read(byteBuffer);
             byteBuffer.flip();
             while (byteBuffer.hasRemaining()) {
                 message += (char) byteBuffer.get();
             }
+            //}
         } catch (IOException ex) {
             ex.printStackTrace();
         }

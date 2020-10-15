@@ -9,18 +9,19 @@ import java.util.Scanner;
 public class PartsClient {
 
     public PartsClient() {
+        boolean running = true;
         System.out.println("PartsClient Started");
         SocketAddress address = new InetSocketAddress("127.0.0.1", 5000);
         try (SocketChannel socketChannel = SocketChannel.open(address)) {
             System.out.println("Connected to Parts Server");
             Scanner scanner = new Scanner(System.in);
-            while (true) {
+            while (running) {
                 // Get part name
                 System.out.print("Enter part name: ");
                 String partName = scanner.nextLine();
                 if (partName.equalsIgnoreCase("quit")) {
                     HelperMethods.sendMessage(socketChannel, "quit");
-                    break;
+                    running = false;
                 } else {
                     HelperMethods.sendMessage(socketChannel, partName);
                     System.out.println("The price is " + HelperMethods.receiveMessage(socketChannel));
