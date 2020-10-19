@@ -13,6 +13,9 @@ public class MyThread extends Thread {
 
 
     public static void main(String[] args) {
+
+        System.out.println("Hello from Thread " + Thread.currentThread().getName());
+
         Thread myThread = new MyThread();
         myThread.start();
         Thread myThread1 = new Thread () {
@@ -30,8 +33,10 @@ public class MyThread extends Thread {
             }
         };
         myThread1.start();
+
         Thread myThread2 = new Thread(new MyRunnable());
         myThread2.start();
+
         Thread myThread3 = new Thread(new Runnable() {
             @Override
             public void run() {
@@ -46,5 +51,51 @@ public class MyThread extends Thread {
             }
         });
         myThread3.start();
-    }
+
+        new Thread() {
+            @Override
+            public void run () {
+                for (int i = 0; i < 10; i++) {
+                    System.out.println("Hello from Thread " + Thread.currentThread().getName());
+                    try {
+                        Thread.sleep(1000);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+        }.start();
+
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                for (int i = 0; i < 10; i++) {
+                    System.out.println("Hello from Thread " + Thread.currentThread().getName());
+                    try {
+                        Thread.sleep(1000);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                }
+
+            }
+        }).start();
+
+        Runnable r = new Runnable() {
+            @Override
+            public void run() {
+                for (int i = 0; i < 10; i++) {
+                    System.out.println("Hello from Thread " + Thread.currentThread().getName());
+                    try {
+                        Thread.sleep(1000);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                }
+
+            }
+        };
+        new Thread(r).start();
+        int i = 7;
+     }
 }
