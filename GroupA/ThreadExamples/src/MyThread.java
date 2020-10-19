@@ -1,8 +1,16 @@
 public class MyThread extends Thread {
 
     public void run(){
-        System.out.println("MyThread running");
+        for (int i = 0; i < 10; i++) {
+            System.out.println("Hello from Thread " + Thread.currentThread().getName());
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
     }
+
 
     public static void main(String[] args) {
         Thread myThread = new MyThread();
@@ -10,7 +18,15 @@ public class MyThread extends Thread {
         Thread myThread1 = new Thread () {
             @Override
             public void run() {
-                System.out.println("MyThread1 running");
+                for (int i = 0; i < 10; i++) {
+                    System.out.println("Hello from Thread " + Thread.currentThread().getName());
+                    try {
+                        Thread.sleep(1000);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                }
+
             }
         };
         myThread1.start();
@@ -19,7 +35,14 @@ public class MyThread extends Thread {
         Thread myThread3 = new Thread(new Runnable() {
             @Override
             public void run() {
-                System.out.println("MyThread inner class");
+                for (int i = 0; i < 10; i++) {
+                    System.out.println("Hello from Thread " + Thread.currentThread().getName());
+                    try {
+                        Thread.sleep(1000);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                }
             }
         });
         myThread3.start();
