@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/DeitelExample/DeitelExample.iml" filepath="$PROJECT_DIR$/DeitelExample/DeitelExample.iml" />
       <module fileurl="file://$PROJECT_DIR$/ThreadExamples.iml" filepath="$PROJECT_DIR$/ThreadExamples.iml" />
     </modules>
   </component>

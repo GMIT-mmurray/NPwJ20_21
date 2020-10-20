@@ -9,7 +9,7 @@ class Q {
             catch(InterruptedException e) {
                 System.out.println("InterruptedException caught");
             }
-        System.out.println("Got: " + n);
+        System.out.println("Got " + n +" "+ Thread.currentThread().getName());
         valueSet = false;
         notify();
         return n;
@@ -24,7 +24,7 @@ class Q {
             }
         this.n = n;
         valueSet = true;
-        System.out.println("Put: " + n);
-        notify();
+        System.out.println("Put " + n + " "+Thread.currentThread().getName());
+        notifyAll();
     }
 }
