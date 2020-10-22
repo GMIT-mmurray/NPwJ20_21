@@ -1,4 +1,4 @@
-// Fig. 23.6: TaskExecutor.java
+package Fig23_06;// Fig. 23.6: TaskExecutor.java
 // Using an ExecutorService to execute Runnables.
 import java.util.concurrent.Executors;
 import java.util.concurrent.ExecutorService;
