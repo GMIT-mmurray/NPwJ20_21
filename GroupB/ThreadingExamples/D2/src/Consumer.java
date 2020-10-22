@@ -8,9 +8,7 @@ public class Consumer implements Runnable
    private final Buffer sharedLocation; // reference to shared object
 
    // constructor
-   public Consumer( Buffer shared )
-   {
-      sharedLocation = shared;
+   public Consumer( Buffer shared )   { sharedLocation = shared;
    } // end Consumer constructor
 
    // read sharedLocation's value 10 times and sum the values

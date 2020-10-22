@@ -1,43 +1,38 @@
-// Fig. 23.12: Producer.java
-// Producer with a run method that inserts the values 1 to 10 in buffer.
+// Fig. 23.13: Consumer.java
+// Consumer with a run method that loops, reading 10 values from buffer.
 import java.util.Random;
 
-public class Producer implements Runnable
-{
+public class Consumer implements Runnable
+{ 
    private final static Random generator = new Random();
    private final Buffer sharedLocation; // reference to shared object
 
    // constructor
-   public Producer( Buffer shared )  {
-       sharedLocation = shared;
-   } // end Producer constructor
+   public Consumer( Buffer shared ) {
+      sharedLocation = shared;
+   } // end Consumer constructor
 
-   // store values from 1 to 10 in sharedLocation
-   public void run()                             
-   {
+   // read sharedLocation's value 10 times and sum the values
+   public void run() {
       int sum = 0;
 
-      for ( int count = 1; count <= 10; count++ )
+      for ( int count = 1; count <= 10; count++ ) 
       {
-         try // sleep 0 to 3 seconds, then place value in Buffer
-         {
-            Thread.sleep( generator.nextInt( 3000 ) ); // random sleep
-            sharedLocation.set( count ); // set value in buffer
-            sum += count; // increment sum of values
-            System.out.printf( "\t%2d\n", sum );
+         // sleep 0 to 3 seconds, read value from buffer and add to sum
+         try {
+            Thread.sleep( generator.nextInt( 3000 ) );
+            sum += sharedLocation.get();
          } // end try
-         // if lines 25 or 26 get interrupted, print stack trace
-         catch ( InterruptedException exception ) 
-         {
+         // if lines 26 or 27 get interrupted, print stack trace
+         catch ( InterruptedException exception )  {
             exception.printStackTrace();
          } // end catch
       } // end for
 
-      System.out.println( 
-         "Producer done producing\nTerminating Producer" );
+      System.out.printf( "\n%s %d\n%s\n", 
+         "Consumer read values totaling", sum, "Terminating Consumer" );
    } // end method run
-} // end class Producer
-
+} // end class Consumer
 
 
 /**************************************************************************
