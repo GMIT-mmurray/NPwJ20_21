@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/DeitelThreadingExample/DeitelThreadingExample.iml" filepath="$PROJECT_DIR$/DeitelThreadingExample/DeitelThreadingExample.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Learning Network Programming with Java_Code/Learning Network Programming with Java_Code.iml" filepath="$PROJECT_DIR$/Learning Network Programming with Java_Code/Learning Network Programming with Java_Code.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ThreadingExamples/ThreadingExamples.iml" filepath="$PROJECT_DIR$/ThreadingExamples/ThreadingExamples.iml" />
+    </modules>
+  </component>
+</project>
