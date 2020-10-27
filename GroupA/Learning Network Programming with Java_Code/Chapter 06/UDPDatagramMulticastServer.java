@@ -1,4 +1,4 @@
-package packt;
+
 
 import java.io.IOException;
 import java.net.InetAddress;
@@ -30,7 +30,7 @@ public class UDPDatagramMulticastServer {
             System.setProperty("java.net.preferIPv6Stack", "true");
             DatagramChannel channel = DatagramChannel.open();
             NetworkInterface networkInterface = NetworkInterface.getByName("eth1");
-            channel.setOption(StandardSocketOptions.IP_MULTICAST_IF, networkInterface);
+           // channel.setOption(StandardSocketOptions.IP_MULTICAST_IF, networkInterface);
             InetSocketAddress group = new InetSocketAddress("FF01:0:0:0:0:0:0:FC", 9003);
 
             String message = "The message";

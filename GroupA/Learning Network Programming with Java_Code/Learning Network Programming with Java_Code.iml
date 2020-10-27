@@ -3,19 +3,19 @@
   <component name="NewModuleRootManager" inherit-compiler-output="true">
     <exclude-output />
     <content url="file://$MODULE_DIR$">
-      <sourceFolder url="file://$MODULE_DIR$/Chapter 01" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Chapter 02" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/Chapter 03" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Chapter 04" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Chapter 05" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/Chapter 06" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/Chapter 07" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Chapter 08" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Chapter 09" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Chapter 06" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Chapter 07" isTestSource="false" />
+      <excludeFolder url="file://$MODULE_DIR$/Chapter 01" />
+      <excludeFolder url="file://$MODULE_DIR$/Chapter 02" />
+      <excludeFolder url="file://$MODULE_DIR$/Chapter 03" />
       <excludeFolder url="file://$MODULE_DIR$/Chapter 04" />
       <excludeFolder url="file://$MODULE_DIR$/Chapter 05" />
       <excludeFolder url="file://$MODULE_DIR$/Chapter 06" />
-      <excludeFolder url="file://$MODULE_DIR$/Chapter 07" />
       <excludeFolder url="file://$MODULE_DIR$/Chapter 08" />
       <excludeFolder url="file://$MODULE_DIR$/Chapter 09" />
     </content>

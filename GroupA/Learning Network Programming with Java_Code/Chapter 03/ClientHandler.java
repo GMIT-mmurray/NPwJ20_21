@@ -5,14 +5,15 @@ import java.nio.channels.SocketChannel;
 public class ClientHandler implements Runnable{
 
     private final SocketChannel socketChannel;
+    private  final int clientNumber;
 
-    public ClientHandler(SocketChannel socketChannel) {
-
+    public ClientHandler(SocketChannel socketChannel, int clientNumber) {
         this.socketChannel = socketChannel;
+        this.clientNumber = clientNumber;
     }
 
     public void run() {
-        System.out.println("ClientHandler Started for " + this.socketChannel);
+        System.out.println("ClientHandler Started for " + clientNumber+ " "+this.socketChannel);
         String partName;
         while (true) {
             partName = HelperMethods.receiveMessage(socketChannel);

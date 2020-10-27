@@ -1,4 +1,4 @@
-package packt;
+
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -30,7 +30,7 @@ public class WorkerThread implements Runnable {
     }
 
     public WorkerThread(Socket clientSocket) {
-        this.clientSocket = clientSocket;
+                this.clientSocket = clientSocket;
     }
 
     @Override

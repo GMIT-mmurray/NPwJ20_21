@@ -11,6 +11,7 @@ public class PartsServer {
     private static final HashMap<String,Float> parts = new HashMap<>();
 
     public PartsServer() {
+        int clientNumber = 0;
         System.out.println("Part Server Started");
         initializeParts();
         try {
@@ -22,7 +23,8 @@ public class PartsServer {
                 System.out.println("Waiting for client ...");
                 SocketChannel socketChannel
                         = serverSocketChannel.accept();
-                new Thread(new ClientHandler(socketChannel)).start();
+                new Thread(new ClientHandler(socketChannel,clientNumber)).start();
+                clientNumber++;
             }
         } catch (IOException ex) {
             ex.printStackTrace();
