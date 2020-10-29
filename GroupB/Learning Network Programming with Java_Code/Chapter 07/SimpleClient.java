@@ -1,4 +1,3 @@
-package packt;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -22,6 +21,8 @@ public class SimpleClient {
             out.println(partName);
             System.out.println(partName + " request sent");
             System.out.println("Response: " + br.readLine());
+            partName = "Quit";
+            out.println(partName);
             socket.close();
 
             // Sending second request
@@ -35,9 +36,10 @@ public class SimpleClient {
             out.println(partName);
             System.out.println(partName + " request sent");
             System.out.println("Response: " + br.readLine());
+            partName = "Quit";
+            out.println(partName);
             socket.close();
-//            partName = "Quit";
-//            out.println(partName);
+
         } catch (IOException ex) {
             ex.printStackTrace();
         }

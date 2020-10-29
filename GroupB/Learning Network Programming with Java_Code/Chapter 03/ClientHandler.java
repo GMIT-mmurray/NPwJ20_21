@@ -11,7 +11,7 @@ public class ClientHandler implements Runnable{
     }
 
     public void run() {
-        System.out.println("ClientHandler Started for " + this.socketChannel);
+        System.out.println("ClientHandler Started for " + this.socketChannel + " "+Thread.currentThread().getName());
         String partName;
         while (true) {
             partName = HelperMethods.receiveMessage(socketChannel);

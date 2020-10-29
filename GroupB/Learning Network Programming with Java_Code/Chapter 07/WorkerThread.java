@@ -1,10 +1,12 @@
-package packt;
+
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintStream;
+
 import static java.lang.System.out;
+
 import java.net.Socket;
 import java.text.NumberFormat;
 import java.util.concurrent.Callable;
@@ -35,14 +37,14 @@ public class WorkerThread implements Runnable {
 
     @Override
     public void run() {
-        System.out.println("Worker Thread Started");
+        System.out.println("Worker Thread Started  " + Thread.currentThread().getName());
         try (BufferedReader bis = new BufferedReader(
                 new InputStreamReader(clientSocket.getInputStream()));
-                PrintStream out = new PrintStream(
-                        clientSocket.getOutputStream())) {
+             PrintStream out = new PrintStream(
+                     clientSocket.getOutputStream())) {
 
-            String partName = bis.readLine();
-            float price = map.get(partName); 
+            //           String partName = bis.readLine();
+            //          float price = map.get(partName);
 
             // Used to support WorkerCallable approach
 //            float price = 0.0f;
@@ -79,31 +81,31 @@ public class WorkerThread implements Runnable {
 //                ex.printStackTrace();
 //            }
 
-            out.println(price);
-            NumberFormat nf = NumberFormat.getCurrencyInstance();
-            System.out.println("Request for " + partName
-                    + " and returned a price of "
-                    + nf.format(price));
+            //           out.println(price);
+            //           NumberFormat nf = NumberFormat.getCurrencyInstance();
+            //           System.out.println("Request for " + partName
+            //                   + " and returned a price of "
+            //                   + nf.format(price));
 
-//            while(true) {
-//                String partName = bis.readLine();
-//                if("quit".equalsIgnoreCase(partName)) {
-//                    break;
-//                }
-//                float price = map.get(partName);
-//                out.println(price);
-//                NumberFormat nf = NumberFormat.getCurrencyInstance();
-//                System.out.println("Request for " + partName
-//                        + " and returned a price of "
-//                        + nf.format(price));
-//            } 
-            clientSocket.close();
+            while (true) {
+                String partName = bis.readLine();
+                if ("quit".equalsIgnoreCase(partName)) {
+                    break;
+                }
+                float price = map.get(partName);
+                out.println(price);
+                NumberFormat nf = NumberFormat.getCurrencyInstance();
+                System.out.println("Request for " + partName
+                        + " and returned a price of "
+                        + nf.format(price) + " By " + Thread.currentThread().getName());
+            }
+            //clientSocket.close();
             System.out.println("Client Connection Terminated");
         } catch (IOException ex) {
             ex.printStackTrace();
         }
 
         System.out.println(
-                "Worker Thread Terminated");
+                "Worker Thread Terminated" + Thread.currentThread().getName());
     }
 }
