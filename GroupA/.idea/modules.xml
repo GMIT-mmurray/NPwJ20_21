@@ -4,6 +4,7 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/DeilelThreadingExamples/DeilelThreadingExamples.iml" filepath="$PROJECT_DIR$/DeilelThreadingExamples/DeilelThreadingExamples.iml" />
       <module fileurl="file://$PROJECT_DIR$/Learning Network Programming with Java_Code/Learning Network Programming with Java_Code.iml" filepath="$PROJECT_DIR$/Learning Network Programming with Java_Code/Learning Network Programming with Java_Code.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Observer/Observer.iml" filepath="$PROJECT_DIR$/Observer/Observer.iml" />
       <module fileurl="file://$PROJECT_DIR$/ThreadExamples/ThreadExamples.iml" filepath="$PROJECT_DIR$/ThreadExamples/ThreadExamples.iml" />
     </modules>
   </component>
