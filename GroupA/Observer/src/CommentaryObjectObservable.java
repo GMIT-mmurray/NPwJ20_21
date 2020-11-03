@@ -5,6 +5,7 @@ public class CommentaryObjectObservable extends Observable implements Commentary
 	private final String subjectDetails;
 
 	public CommentaryObjectObservable(String subjectDetails){
+
 		this.subjectDetails = subjectDetails;
 	}
 	
