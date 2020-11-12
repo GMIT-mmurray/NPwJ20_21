@@ -32,7 +32,7 @@ public class DisplayAuthors extends JFrame {
          
          // query database
          ResultSet resultSet = 
-            statement.executeQuery( "SELECT * FROM titles" );
+            statement.executeQuery( "SELECT isbn, title, editionNumber, copyright, price FROM titles WHERE title LIKE'%How to Program'ORDER BY title ASC" );
          
          // process query results
          StringBuffer results = new StringBuffer();
@@ -41,7 +41,7 @@ public class DisplayAuthors extends JFrame {
          
          for ( int i = 1; i <= numberOfColumns; i++ ) {
             results.append( metaData.getColumnName( i )
-               + "\t" );
+               + "\t\t\t" );
          }
          
          results.append( "\n" );
@@ -50,7 +50,7 @@ public class DisplayAuthors extends JFrame {
             
             for ( int i = 1; i <= numberOfColumns; i++ ) {
                results.append( resultSet.getObject( i ) 
-                  + "\t" );
+                  + "\t\t\t" );
             }
             
             results.append( "\n" );
