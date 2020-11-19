@@ -22,12 +22,10 @@ public class AddressBook extends JFrame {
    private AddressBookDataAccess database;
 
    // references to Actions
-   Action newAction, saveAction, deleteAction, 
-      searchAction, exitAction;
+   Action newAction, saveAction, deleteAction,  searchAction, exitAction;
    
    // set up database connection and GUI
-   public AddressBook() 
-   {
+   public AddressBook()  {
       super( "Address Book" );
       
       // create database connection
@@ -90,9 +88,8 @@ public class AddressBook extends JFrame {
       // application
       addWindowListener( 
          new WindowAdapter() {
-            public void windowClosing( WindowEvent event )
-            {
-               shutDown();
+            public void windowClosing( WindowEvent event )            {
+                      shutDown();
             }
          }
       );
@@ -116,17 +113,14 @@ public class AddressBook extends JFrame {
    }
    
    // create a new AddressBookEntryFrame and register listener
-   private AddressBookEntryFrame createAddressBookEntryFrame()
-   {
+   private AddressBookEntryFrame createAddressBookEntryFrame()  {
       AddressBookEntryFrame frame = new AddressBookEntryFrame();
       setDefaultCloseOperation( DISPOSE_ON_CLOSE );
-      frame.addInternalFrameListener( 
-         new InternalFrameAdapter() {
+      frame.addInternalFrameListener(  new InternalFrameAdapter() {
 
             // internal frame becomes active frame on desktop
             public void internalFrameActivated( 
-               InternalFrameEvent event )
-            {
+               InternalFrameEvent event ) {
                saveAction.setEnabled( true );  
                deleteAction.setEnabled( true );  
             }
@@ -146,7 +140,13 @@ public class AddressBook extends JFrame {
 
    // method to launch program execution
    public static void main( String args[] )   {
-      new AddressBook();
+     SwingUtilities.invokeLater(new Runnable() {
+        @Override
+        public void run() {
+          new AddressBook();
+        }
+     });
+
    }
    
    // Private inner class defines action that enables 
@@ -155,27 +155,21 @@ public class AddressBook extends JFrame {
    private class NewAction extends AbstractAction {
       
       // set up action's name, icon, descriptions and mnemonic
-      public NewAction()
-      {
+      public NewAction()   {
          putValue( NAME, "New" );
-         putValue( SMALL_ICON, new ImageIcon(
-            getClass().getResource( "images/New24.png" ) ) );
+         putValue( SMALL_ICON, new ImageIcon(getClass().getResource( "images/New24.png" ) ) );
          putValue( SHORT_DESCRIPTION, "New" );
-         putValue( LONG_DESCRIPTION, 
-            "Add a new address book entry" );
+         putValue( LONG_DESCRIPTION, "Add a new address book entry" );
          putValue( MNEMONIC_KEY, new Integer( 'N' ) );
       }
       
       // display window in which user can input entry
-      public void actionPerformed( ActionEvent e )
-      {
+      public void actionPerformed( ActionEvent e )  {
          // create new internal window
-         AddressBookEntryFrame entryFrame = 
-            createAddressBookEntryFrame();
+         AddressBookEntryFrame entryFrame =  createAddressBookEntryFrame();
          
          // set new AddressBookEntry in window
-         entryFrame.setAddressBookEntry( 
-            new AddressBookEntry() );
+         entryFrame.setAddressBookEntry(new AddressBookEntry());
          
          // display window
          desktop.add( entryFrame );
@@ -201,11 +195,9 @@ public class AddressBook extends JFrame {
       }
       
       // save new entry or update existing entry
-      public void actionPerformed( ActionEvent e )
-      {
+      public void actionPerformed( ActionEvent e )      {
          // get currently active window
-         AddressBookEntryFrame currentFrame = 
-            ( AddressBookEntryFrame ) desktop.getSelectedFrame();
+         AddressBookEntryFrame currentFrame =  ( AddressBookEntryFrame ) desktop.getSelectedFrame();
 
          // obtain AddressBookEntry from window
          AddressBookEntry person = 
@@ -219,18 +211,20 @@ public class AddressBook extends JFrame {
             int personID = person.getPersonID();
             
             // determine string for message dialogs
-            String operation = 
-               ( personID == 0 ) ? "Insertion" : "Update";
+            String operation = ( personID == 0 ) ? "Insertion" : "Update";
                
             // insert or update entry
+            boolean result = false;
             if ( personID == 0 )         
-               database.newPerson( person );
+               result = database.newPerson( person );
             else
-               database.savePerson( person );
+               result = database.savePerson( person );
                
             // display success message
-            JOptionPane.showMessageDialog( desktop,
-               operation + " successful" );
+            if (result == true)
+               JOptionPane.showMessageDialog( desktop, operation + " successful" );
+            else
+               JOptionPane.showMessageDialog( desktop, operation + " FAILURE" );
          }  // end try
          
          // detect database errors

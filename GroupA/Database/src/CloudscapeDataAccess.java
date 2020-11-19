@@ -5,8 +5,7 @@
 // Java core packages
 import java.sql.*;
 
-public class CloudscapeDataAccess 
-   implements AddressBookDataAccess {
+public class CloudscapeDataAccess implements AddressBookDataAccess {
       
    // reference to database connection
    private Connection connection;
@@ -36,8 +35,7 @@ public class CloudscapeDataAccess
    private PreparedStatement sqlDeleteEmail;
 
    // set up PreparedStatements to access database
-   public CloudscapeDataAccess() throws Exception
-   {
+   public CloudscapeDataAccess() throws Exception   {
       // connect to addressbook database
       connect();
 
@@ -56,15 +54,15 @@ public class CloudscapeDataAccess
       // Obtain personID for last person inserted in database.
       // [This is a Cloudscape-specific database operation.]
       // Modified for MySql
-      sqlPersonID = connection.prepareStatement("SELECT LAST_INSERT_ID()");
+      //sqlPersonID = connection.prepareStatement(  "SELECT max(personID) FROM names" );
+      sqlPersonID = connection.prepareStatement(  "SELECT count(*) FROM names" );
+      //sqlPersonID = connection.prepareStatement("SELECT LAST_INSERT_ID()");
 
       // Insert first and last names in table names. 
       // For referential integrity, this must be performed 
       // before sqlInsertAddress, sqlInsertPhone and
       // sqlInsertEmail.
-      sqlInsertName = connection.prepareStatement(
-         "INSERT INTO names ( firstName, lastName ) " +
-         "VALUES ( ? , ? )" );
+      sqlInsertName = connection.prepareStatement("INSERT INTO names ( firstName, lastName ) " + "VALUES ( ? , ? )" );
 
       // insert address in table addresses
       sqlInsertAddress = connection.prepareStatement(

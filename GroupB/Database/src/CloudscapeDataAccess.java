@@ -5,8 +5,7 @@
 // Java core packages
 import java.sql.*;
 
-public class CloudscapeDataAccess 
-   implements AddressBookDataAccess {
+public class CloudscapeDataAccess implements AddressBookDataAccess {
       
    // reference to database connection
    private Connection connection;

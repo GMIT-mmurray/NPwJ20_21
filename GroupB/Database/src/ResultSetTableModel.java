@@ -59,10 +59,10 @@ public class ResultSetTableModel extends AbstractTableModel {
    public int getColumnCount() {
       // determine number of columns
       try {
-         return metaData.getColumnCount(); 
+         return metaData.getColumnCount();
       }
      // catch SQLExceptions and print error message
-      catch ( SQLException sqlException ) {
+          catch ( SQLException sqlException ) {
          sqlException.printStackTrace();
       }
       // if problems occur above, return 0 for number of columns

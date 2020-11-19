@@ -17,8 +17,11 @@ public class AddressBookEntry {
    private int emailID;
    
    // empty constructor
-   public AddressBookEntry()
-   {
+   public AddressBookEntry()  {
+      this.personID = 0;
+      this.addressID = 0;
+      this.phoneID = 0;
+      this.emailID = 0;
    }
 
    // set person's id

@@ -122,8 +122,7 @@ public class AddressBookEntryFrame extends JInternalFrame {
    private void createRow( String name )
    {            
       JLabel label = new JLabel( name, SwingConstants.RIGHT );
-      label.setBorder( 
-         BorderFactory.createEmptyBorder( 5, 5, 5, 5 ) );
+      label.setBorder(BorderFactory.createEmptyBorder( 5, 5, 5, 5 ) );
       leftPanel.add( label );
           
       JTextField field = new JTextField( 30 );

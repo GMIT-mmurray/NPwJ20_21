@@ -17,8 +17,8 @@ public class AddressBookEntry {
    private int emailID;
    
    // empty constructor
-   public AddressBookEntry()
-   {
+   public AddressBookEntry()   {
+
    }
 
    // set person's id
