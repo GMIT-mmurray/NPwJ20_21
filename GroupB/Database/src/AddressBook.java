@@ -89,7 +89,7 @@ public class AddressBook extends JFrame {
       addWindowListener( 
          new WindowAdapter() {
             public void windowClosing( WindowEvent event )            {
-                      shutDown();
+               shutDown();
             }
          }
       );
@@ -281,17 +281,15 @@ public class AddressBook extends JFrame {
          
          // delete person
          try {
-            database.deletePerson( person );
-            
-            // display message indicating success
-            JOptionPane.showMessageDialog( desktop,
-               "Deletion successful" );         
+            if (database.deletePerson( person ))
+               JOptionPane.showMessageDialog( desktop, "Deletion successful" );
+            else
+               JOptionPane.showMessageDialog( desktop, "Deletion UNsuccessful" );
          }
          
          // detect problems deleting person
          catch ( DataAccessException exception ) {
-            JOptionPane.showMessageDialog( desktop, exception,
-               "Deletion failed", JOptionPane.ERROR_MESSAGE );   
+            JOptionPane.showMessageDialog( desktop, exception, "Deletion failed", JOptionPane.ERROR_MESSAGE );
             exception.printStackTrace();  
          }
          
