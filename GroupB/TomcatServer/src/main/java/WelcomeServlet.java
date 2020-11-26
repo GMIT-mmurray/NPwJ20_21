@@ -1,31 +1,24 @@
-// Fig. 9.11: WelcomeServlet2.java
-// Processing HTTP get requests containing data.
+// Fig. 9.5: WelcomeServlet.java
+// A simple servlet to process get requests.
 
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
 
-@WebServlet(urlPatterns = "/welcome2")
-public class WelcomeServlet2 extends HttpServlet {   
+public class WelcomeServlet extends HttpServlet {   
 
-   // process "get" request from client
+   // process "get" requests from clients
    protected void doGet( HttpServletRequest request, 
       HttpServletResponse response )
          throws ServletException, IOException 
    {
-      String firstName = request.getParameter( "firstname" );
-      String lastName = request.getParameter("lastname");
-
-      System.out.println(firstName + " "+lastName);
-
       response.setContentType( "text/html" );
       PrintWriter out = response.getWriter();  
       
-      // send XHTML document to client
+      // send XHTML page to client
 
       // start XHTML document
       out.println( "<?xml version = \"1.0\"?>" );
@@ -39,24 +32,18 @@ public class WelcomeServlet2 extends HttpServlet {
       
       // head section of document
       out.println( "<head>" );
-      out.println( 
-         "<title>Processing get requests with data</title>" );
+      out.println( "<title>A Simple Servlet Example</title>" );
       out.println( "</head>" );
       
       // body section of document
       out.println( "<body>" );
-      out.println( "<h1>Hello " + firstName + " " +lastName + ",<br />" );
-      out.println( "Welcome to Servlets!</h1>" );
+      out.println( "<h1>Welcome to Servlets!</h1>" );
       out.println( "</body>" );
       
       // end XHTML document
       out.println( "</html>" );
       out.close();  // close stream to complete the page
-   }
-   protected void doPost(HttpServletRequest request, HttpServletResponse response)
-           throws ServletException, IOException {
-      doGet(request,response);
-   }
+   }   
 }
 
 /***************************************************************
