@@ -13,13 +13,11 @@ import java.io.PrintWriter;
 public class WelcomeServlet2 extends HttpServlet {   
 
    // process "get" request from client
-   protected void doGet( HttpServletRequest request, 
-      HttpServletResponse response )
-         throws ServletException, IOException 
+   protected void doGet( HttpServletRequest request, HttpServletResponse response )  throws ServletException, IOException
    {
       String firstName = request.getParameter( "firstname" );
       String lastName = request.getParameter("lastname");
-
+      System.out.println(">>>>> "+firstName + "  " +lastName );
       System.out.println(firstName + " "+lastName);
 
       response.setContentType( "text/html" );
@@ -39,9 +37,8 @@ public class WelcomeServlet2 extends HttpServlet {
       
       // head section of document
       out.println( "<head>" );
-      out.println( 
-         "<title>Processing get requests with data</title>" );
-      out.println( "</head>" );
+      out.println("<title>Processing get requests with data</title>" );
+      out.println("</head>" );
       
       // body section of document
       out.println( "<body>" );
@@ -53,8 +50,7 @@ public class WelcomeServlet2 extends HttpServlet {
       out.println( "</html>" );
       out.close();  // close stream to complete the page
    }
-   protected void doPost(HttpServletRequest request, HttpServletResponse response)
-           throws ServletException, IOException {
+   protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
       doGet(request,response);
    }
 }
