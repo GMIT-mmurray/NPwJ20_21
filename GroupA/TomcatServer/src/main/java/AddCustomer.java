@@ -51,8 +51,9 @@ public class AddCustomer extends HttpServlet {
              add.setString(7, c.state);
              add.setString(8, c.zip);
              add.setString(9, c.phone);
-             count  = add.executeUpdate();
-            
+             //count  = add.executeUpdate();
+             count = 1; // test int ... success
+             System.out.println(c);
              add.close();
              con.close();
             }

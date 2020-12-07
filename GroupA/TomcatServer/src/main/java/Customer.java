@@ -48,8 +48,7 @@ public class Customer implements Serializable{
      */
     
     @Override
-    public String toString()
-    {
-      return id+ " : "+lastName + ", " + firstName;
+    public String toString()    {
+      return id+ " : "+lastName + ", " + firstName+ ", " + address1 +" "+address2 + ", "+city+", "+state+", "+zip +", "+phone;
     }
 }
