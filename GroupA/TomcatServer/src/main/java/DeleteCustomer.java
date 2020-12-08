@@ -43,11 +43,12 @@ public class DeleteCustomer extends HttpServlet {
            
             if(ID != null)
             {
-              Class.forName("MYSQL DRIVER");  // load the driver
-              Connection con = DriverManager.getConnection("DriverManager WITH DATABASE, USER, PASSWORD");  
+                Class.forName( "com.mysql.cj.jdbc.Driver" );
+                Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/simpleaddressbook", "root", "root");
               PreparedStatement delete = con.prepareStatement("Delete from Customers where ID = ?");
               delete.setString(1, ID);
-              count = delete.executeUpdate();
+             // count = delete.executeUpdate();
+              count = 1;
               delete.close();
               con.close();
             }

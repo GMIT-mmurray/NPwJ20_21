@@ -30,17 +30,17 @@ public class FindCustomer extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)   throws ServletException, IOException {
 
-         response.setContentType("application/octet-stream");
-                   
-         InputStream in = request.getInputStream();
-         ObjectInputStream inputStream = new ObjectInputStream(in);
-         OutputStream outputStream = response.getOutputStream();
-         ObjectOutputStream oos = new ObjectOutputStream(outputStream);
+
+        response.setContentType("application/octet-stream");
+        InputStream in = request.getInputStream();
+        ObjectInputStream ois = new ObjectInputStream(in);
+        OutputStream outstr = response.getOutputStream();
+        ObjectOutputStream oos = new ObjectOutputStream(outstr);
 
          try {
-           // response.setContentType("application/x-java-serialized-object");
-             System.out.println(" BK1");
-             String lastName = (String)inputStream.readObject();
+            //response.setContentType("application/x-java-serialized-object");
+            System.out.println(" BK1");
+           String lastName = (String) ois.readObject();
 
 
              System.out.println(lastName);
@@ -50,7 +50,7 @@ public class FindCustomer extends HttpServlet {
             Class.forName( "com.mysql.cj.jdbc.Driver" );
             Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/simpleaddressbook", "root", "root");
             PreparedStatement find = con.prepareStatement("select * from Customers where Last_Name like ?");
-            find.setString(1, lastName);
+          //  find.setString(1, lastName);
 //            ResultSet rs = find.executeQuery();
 //            while(rs.next())  {
 //             Customer c = new Customer(rs.getString(1), rs.getString(3),rs.getString(2),rs.getString(4),

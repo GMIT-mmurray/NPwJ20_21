@@ -6,29 +6,25 @@ import java.net.MalformedURLException;
 import java.net.URL;
 
 public class Main {
-    public static void main(String[] args) {
-        // Code to find customer in database
-        URL link = null;
-        try {
-            link = new URL("http://localhost:8080/TomcatServer_war_exploded/" + "FindCustomer");
+    public static void main(String[] args) throws IOException {
+//        // Code to find customer in database
+//       // URL link = null;
 
-            HttpURLConnection urlconnection = null;
-            urlconnection = (HttpURLConnection) link.openConnection();
+       try {
+          URL link = new URL("http://localhost:8080/TomcatServer_war_exploded/"+"FindCustomer");
+          HttpURLConnection urlconnection = (HttpURLConnection) link.openConnection();
+          urlconnection.setDoOutput(true);
+          urlconnection.setUseCaches (false);
+          urlconnection.setDefaultUseCaches (false);
+          urlconnection.setDoInput(true);
+           // Specify the content type that we will send binary data
+          urlconnection.setRequestProperty ("Content-Type", "application/octet-stream");
+          urlconnection.setRequestMethod("GET");
+          ObjectOutputStream oos = new ObjectOutputStream(urlconnection.getOutputStream());
 
-            urlconnection.setDoOutput(true);
-            urlconnection.setDoInput(true);
-            urlconnection.setUseCaches(false);
-            urlconnection.setDefaultUseCaches(false);
-
-            // Specify the content type that we will send binary data
-            urlconnection.setRequestProperty("Content-Type", "application/octet-stream");
-
-            ObjectOutputStream oos = new ObjectOutputStream(urlconnection.getOutputStream());
-            ObjectInputStream ois = new ObjectInputStream(urlconnection.getInputStream());
-
-            oos.writeObject("murray");
-            oos.flush();
-
+          oos.writeObject("murray");  // send the customer
+          oos.flush();
+          ObjectInputStream ois = new ObjectInputStream(urlconnection.getInputStream());
            while (true) {
                 Customer c = (Customer) ois.readObject();
                 if (c.id.length() == 0)  // empty id indicates last customer
@@ -49,9 +45,10 @@ public class Main {
             classNotFoundException.printStackTrace();
         }
 
+
 //        //-------------------------------------------------------------------------------------------------------------------------
 //
-//        URL link = new URL("http://localhost:8080/"+"DeleteCustomer");
+//        URL link = new URL("http://localhost:8080/TomcatServer_war_exploded/"+"DeleteCustomer");
 //        HttpURLConnection urlconnection = (HttpURLConnection) link.openConnection();
 //
 //        urlconnection.setDoOutput(true);
@@ -63,13 +60,13 @@ public class Main {
 //        urlconnection.setRequestProperty ("Content-Type", "application/octet-stream");
 //
 //        ObjectOutputStream oos = new ObjectOutputStream(urlconnection.getOutputStream());
-//        oos.writeObject(ID);  // send the id
+//        oos.writeObject("0");  // send the id
 //
 //        ObjectInputStream ois = new ObjectInputStream(urlconnection.getInputStream());
 //        int count = ois.readInt();  // read back the number of row deleted
 //        oos.close();
 //        ois.close();
-//
+
 //        //-----------------------------------------------------------------------------------------------------------------------------
 //
         // Add customer to data base
@@ -103,15 +100,15 @@ public class Main {
 //        } catch (IOException e) {
 //            e.printStackTrace();
 //        }
-
+//
+//////
+////
 //
 //
+//        //---------------------------------------------------------------------------------
+//                Customer c = new Customer("1","murray","michael","add1","add2","city","state","123","12345567"); //Test
 //
-//
-//        ---------------------------------------------------------------------------------
-//                Customer c = new Customer(FILL IN THE FIELDS);
-//
-//        URL link = new URL("http://localhost:8080/"+"UpdateCustomer");
+//        URL link = new URL("http://localhost:8080/TomcatServer_war_exploded/"+"UpdateCustomer");
 //
 //        HttpURLConnection urlconnection = (HttpURLConnection) link.openConnection();
 //
@@ -131,8 +128,8 @@ public class Main {
 //        int count = ois.readInt();
 //        oos.close();
 //        ois.close();
-//        --------------------------------------------------------------------------------------
-//
-//
+//       // --------------------------------------------------------------------------------------
+
+
     }
 }

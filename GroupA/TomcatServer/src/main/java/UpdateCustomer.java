@@ -43,8 +43,8 @@ public class UpdateCustomer extends HttpServlet {
            
             if(c != null)
             {
-               Class.forName("MYSQL DRIVER");  // load the driver
-             Connection con = DriverManager.getConnection("DriverManager WITH DATABASE, USER, PASSWORD");   
+                Class.forName( "com.mysql.cj.jdbc.Driver" );
+                Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/simpleaddressbook", "root", "root");
              PreparedStatement update = con.prepareStatement("Update Customers set LAST_NAME=?, FIRST_NAME=?,Street1=?,Street2=?,City=?,State=?,Zip=?,Phone=? where ID =?");
                               
              update.setString(1, c.lastName);
@@ -56,8 +56,8 @@ public class UpdateCustomer extends HttpServlet {
              update.setString(7, c.zip);
              update.setString(8, c.phone);
              update.setString(9, c.id);
-             count = update.executeUpdate();
-            
+            // count = update.executeUpdate();
+            count =1;
              update.close();
              con.close();
             }           
