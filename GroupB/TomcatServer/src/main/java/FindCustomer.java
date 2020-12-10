@@ -33,28 +33,35 @@ public class FindCustomer extends HttpServlet {
                    response.setContentType("application/octet-stream");
                    
          InputStream in = request.getInputStream();
-         ObjectInputStream inputFromApplet = new ObjectInputStream(in);
+         ObjectInputStream inputFromApp = new ObjectInputStream(in);
          OutputStream outstr = response.getOutputStream();
          ObjectOutputStream oos = new ObjectOutputStream(outstr);             
 
          try {
            // response.setContentType("application/x-java-serialized-object");
-             String lastName = (String)inputFromApplet.readObject();
+             String lastName = (String)inputFromApp.readObject();
+             System.out.println(lastName);
+
             if(lastName == null)
                 lastName = "";  // default to all
-            
-             Class.forName("MYSQL DRIVER");  // load the driver
-             Connection con = DriverManager.getConnection("DriverManager WITH DATABASE, USER, PASSWORD");   
+
+             Class.forName( "com.mysql.cj.jdbc.Driver" );
+             Connection  con = DriverManager.getConnection("jdbc:mysql://localhost:3306/simpleaddressbook","root","root" );
+
             PreparedStatement find = con.prepareStatement("select * from Customers where Last_Name like ?");
-            find.setString(1, lastName+"%");
-            ResultSet rs = find.executeQuery();
-            while(rs.next())
-            {
-             Customer c = new Customer(rs.getString(1), rs.getString(3),rs.getString(2),rs.getString(4),
-                               rs.getString(5),rs.getString(6),rs.getString(7),rs.getString(8), rs.getString(9));
-             oos.writeObject(c);
-            }
-            rs.close();
+            find.setString(1, lastName);
+           // ResultSet rs = find.executeQuery();
+//            while(rs.next()) {
+//             Customer c = new Customer(rs.getString(1), rs.getString(3),rs.getString(2),rs.getString(4),
+//                               rs.getString(5),rs.getString(6),rs.getString(7),rs.getString(8), rs.getString(9));
+//             oos.writeObject(c);
+//            }
+             for (int i = 0; i<5; i++) {
+                 Customer c = new Customer(String.valueOf(i), "murray","murray","add1","add2","city","state","zip","phone");
+                 oos.writeObject(c);
+             }
+
+            //rs.close();
             find.close();
             con.close();
           }

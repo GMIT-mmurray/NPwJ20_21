@@ -21,6 +21,27 @@ public class Customer implements Serializable{
     {
         
     }
+
+    /**
+     * Converts object to a string
+     *
+     * @return String
+     */
+    @Override
+    public String toString() {
+        return "Customer{" +
+                "id='" + id + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", firstName='" + firstName + '\'' +
+                ", address1='" + address1 + '\'' +
+                ", address2='" + address2 + '\'' +
+                ", city='" + city + '\'' +
+                ", state='" + state + '\'' +
+                ", zip='" + zip + '\'' +
+                ", phone='" + phone + '\'' +
+                '}';
+    }
+
     /**
      *  working constructor
      * @param i ID
@@ -43,15 +64,5 @@ public class Customer implements Serializable{
      state = s;
      zip = z;
      phone = p;           
-    }
-    /**
-     *  Converts object to a string
-     * @return String
-     */
-    
-    @Override
-    public String toString()
-    {
-      return id+ " : "+lastName + ", " + firstName;
     }
 }

@@ -37,27 +37,28 @@ public class AddCustomer extends HttpServlet {
 
          try {
             Customer c = (Customer)ois.readObject();
+            System.out.println(c);
            
             if(c != null) {
                 Class.forName( "com.mysql.cj.jdbc.Driver" );
-                Connection  con = DriverManager.getConnection("jdbc:mysql://localhost:3306/animalsurvey","root","root" );
+                Connection  con = DriverManager.getConnection("jdbc:mysql://localhost:3306/simpleaddressbook","root","root" );
                   
                 PreparedStatement add = con.prepareStatement("Insert Into Customers Values (?,?,?,?,?,?,?,?,?)");
 
-             add.setString(1, c.id);
-             add.setString(2, c.firstName);
-             add.setString(3, c.lastName);
-             add.setString(4, c.address1);
-             add.setString(5, c.address2);
-             add.setString(6, c.city);
-             add.setString(7, c.state);
-             add.setString(8, c.zip);
-             add.setString(9, c.phone);
+                add.setString(1, c.id);
+                add.setString(2, c.firstName);
+                add.setString(3, c.lastName);
+                add.setString(4, c.address1);
+                add.setString(5, c.address2);
+                add.setString(6, c.city);
+                add.setString(7, c.state);
+                add.setString(8, c.zip);
+                add.setString(9, c.phone);
 
-             result  = add.executeUpdate();
-            
-             add.close();
-             con.close();
+                result  = add.executeUpdate();
+
+                add.close();
+                con.close();
             }
         } 
         catch(Exception ex)        {

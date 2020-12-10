@@ -45,14 +45,24 @@ public class Customer implements Serializable{
      zip = z;
      phone = p;           
     }
+
     /**
-     *  Converts object to a string
+     * Converts object to a string
+     *
      * @return String
      */
-    
     @Override
-    public String toString()
-    {
-      return id+ " : "+lastName + ", " + firstName;
+    public String toString() {
+        return "Customer{" +
+                "id='" + id + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", firstName='" + firstName + '\'' +
+                ", address1='" + address1 + '\'' +
+                ", address2='" + address2 + '\'' +
+                ", city='" + city + '\'' +
+                ", state='" + state + '\'' +
+                ", zip='" + zip + '\'' +
+                ", phone='" + phone + '\'' +
+                '}';
     }
 }
