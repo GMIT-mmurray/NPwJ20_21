@@ -36,7 +36,7 @@ public class AddCustomer extends HttpServlet {
          ObjectOutputStream oos = new ObjectOutputStream(outstr);
 
          try {
-            Customer c = (Customer)ois.readObject();
+            AddressBookEntry c = (AddressBookEntry)ois.readObject();
             System.out.println(c);
            
             if(c != null) {
@@ -45,8 +45,8 @@ public class AddCustomer extends HttpServlet {
                   
                 PreparedStatement add = con.prepareStatement("Insert Into Customers Values (?,?,?,?,?,?,?,?,?)");
 
-                add.setString(1, c.id);
-                add.setString(2, c.firstName);
+                add.setString(1, c.getPersonID());
+                add.setString(2, c.getFirstName());
                 add.setString(3, c.lastName);
                 add.setString(4, c.address1);
                 add.setString(5, c.address2);

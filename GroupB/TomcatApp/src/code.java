@@ -38,8 +38,8 @@ public class code {
         oos.close();
         ois.close();
 //        ------------------------------------------------------------------------
-//
-//                URL link = new URL("http://localhost:8080/" + "DeleteCustomer");
+
+//        URL link = new URL("http://localhost:8080/TomcatServer_war_exploded/" + "DeleteCustomer");
 //        HttpURLConnection urlconnection = (HttpURLConnection) link.openConnection();
 //
 //        urlconnection.setDoOutput(true);
@@ -51,13 +51,14 @@ public class code {
 //        urlconnection.setRequestProperty("Content-Type", "application/octet-stream");
 //
 //        ObjectOutputStream oos = new ObjectOutputStream(urlconnection.getOutputStream());
-//        oos.writeObject(ID);  // send the id
+//        oos.writeObject("1");  // send the id
 //
 //        ObjectInputStream ois = new ObjectInputStream(urlconnection.getInputStream());
 //        int count = ois.readInt();  // read back the number of row deleted
+//        System.out.println(count);
 //        oos.close();
 //        ois.close();
-//
+
 //        -----------------------------------------------------------------------------
 //     Fill the customer class with data from your GUI
 //        Customer c = new Customer("1","murray","michael","add1","add2","city","state","1232345","999");
@@ -86,9 +87,9 @@ public class code {
 //        ois.close();
 
 //        ---------------------------------------------------------------------------------
-//                Customer c = new Customer(FILL IN THE FIELDS);
+//        Customer c = new Customer("xxx","murray","michael","add1","add2","city","state","1232345","1111111999");
 //
-//        URL link = new URL("http://localhost:8080/" + "UpdateCustomer");
+//        URL link = new URL("http://localhost:8080/TomcatServer_war_exploded/" + "UpdateCustomer");
 //
 //        HttpURLConnection urlconnection = (HttpURLConnection) link.openConnection();
 //
@@ -106,6 +107,7 @@ public class code {
 //
 //        ObjectInputStream ois = new ObjectInputStream(urlconnection.getInputStream());
 //        int count = ois.readInt();
+//        System.out.println(count);
 //        oos.close();
 //        ois.close();
 //        --------------------------------------------------------------------------------------

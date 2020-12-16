@@ -22,53 +22,51 @@ public class UpdateCustomer extends HttpServlet {
      * <code>GET</code> and
      * <code>POST</code> methods.
      *
-     * @param request servlet request
+     * @param request  servlet request
      * @param response servlet response
      * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
+     * @throws IOException      if an I/O error occurs
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-            
-         int count = 0;
-         response.setContentType("application/octet-stream");
-         InputStream in = request.getInputStream();
-         ObjectInputStream ois = new ObjectInputStream(in);
-         OutputStream outstr = response.getOutputStream();
-         ObjectOutputStream oos = new ObjectOutputStream(outstr);         
-         
-         try{
-                
-            Customer c = (Customer)ois.readObject();
-           
-            if(c != null)
-            {
-               Class.forName("MYSQL DRIVER");  // load the driver
-             Connection con = DriverManager.getConnection("DriverManager WITH DATABASE, USER, PASSWORD");   
-             PreparedStatement update = con.prepareStatement("Update Customers set LAST_NAME=?, FIRST_NAME=?,Street1=?,Street2=?,City=?,State=?,Zip=?,Phone=? where ID =?");
-                              
-             update.setString(1, c.lastName);
-             update.setString(2, c.firstName);
-             update.setString(3, c.address1);
-             update.setString(4, c.address2);
-             update.setString(5, c.city);
-             update.setString(6, c.state);
-             update.setString(7, c.zip);
-             update.setString(8, c.phone);
-             update.setString(9, c.id);
-             count = update.executeUpdate();
-            
-             update.close();
-             con.close();
-            }           
-  
-        } 
-        catch(Exception ex)
-        {
-          System.out.println(ex.toString());
-        }
-         finally {   
-            oos.writeInt(count);             
+
+        int count = 0;
+        response.setContentType("application/octet-stream");
+        InputStream in = request.getInputStream();
+        ObjectInputStream ois = new ObjectInputStream(in);
+        OutputStream outstr = response.getOutputStream();
+        ObjectOutputStream oos = new ObjectOutputStream(outstr);
+
+        try {
+
+            Customer c = (Customer) ois.readObject();
+            System.out.println(c);
+
+            if (c != null) {
+
+                Class.forName("com.mysql.cj.jdbc.Driver");
+                Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/simpleaddressbook", "root", "root");
+                PreparedStatement update = con.prepareStatement("Update Customers set LAST_NAME=?, FIRST_NAME=?,Street1=?,Street2=?,City=?,State=?,Zip=?,Phone=? where ID =?");
+
+                update.setString(1, c.lastName);
+                update.setString(2, c.firstName);
+                update.setString(3, c.address1);
+                update.setString(4, c.address2);
+                update.setString(5, c.city);
+                update.setString(6, c.state);
+                update.setString(7, c.zip);
+                update.setString(8, c.phone);
+                update.setString(9, c.id);
+//                count = update.executeUpdate();
+
+                update.close();
+                con.close();
+            }
+
+        } catch (Exception ex) {
+            System.out.println(ex.toString());
+        } finally {
+            oos.writeInt(1);
             oos.flush();
             oos.close();
         }
@@ -76,14 +74,15 @@ public class UpdateCustomer extends HttpServlet {
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
+
     /**
      * Handles the HTTP
      * <code>GET</code> method.
      *
-     * @param request servlet request
+     * @param request  servlet request
      * @param response servlet response
      * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
+     * @throws IOException      if an I/O error occurs
      */
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -95,10 +94,10 @@ public class UpdateCustomer extends HttpServlet {
      * Handles the HTTP
      * <code>POST</code> method.
      *
-     * @param request servlet request
+     * @param request  servlet request
      * @param response servlet response
      * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
+     * @throws IOException      if an I/O error occurs
      */
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)

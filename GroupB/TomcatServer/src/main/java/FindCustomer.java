@@ -50,16 +50,16 @@ public class FindCustomer extends HttpServlet {
 
             PreparedStatement find = con.prepareStatement("select * from Customers where Last_Name like ?");
             find.setString(1, lastName);
-           // ResultSet rs = find.executeQuery();
-//            while(rs.next()) {
-//             Customer c = new Customer(rs.getString(1), rs.getString(3),rs.getString(2),rs.getString(4),
-//                               rs.getString(5),rs.getString(6),rs.getString(7),rs.getString(8), rs.getString(9));
-//             oos.writeObject(c);
-//            }
-             for (int i = 0; i<5; i++) {
-                 Customer c = new Customer(String.valueOf(i), "murray","murray","add1","add2","city","state","zip","phone");
-                 oos.writeObject(c);
-             }
+            ResultSet rs = find.executeQuery();
+            while(rs.next()) {
+             Customer c = new Customer(rs.getString(1), rs.getString(3),rs.getString(2),rs.getString(4),
+                               rs.getString(5),rs.getString(6),rs.getString(7),rs.getString(8), rs.getString(9));
+             oos.writeObject(c);
+            }
+//             for (int i = 0; i<5; i++) {
+//                 Customer c = new Customer(String.valueOf(i), "murray","murray","add1","add2","city","state","zip","phone");
+//                 oos.writeObject(c);
+//             }
 
             //rs.close();
             find.close();

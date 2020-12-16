@@ -3,6 +3,7 @@
 // updating, deleting and finding records.
 
 // Java core packages
+import java.io.IOException;
 import java.sql.*;
 
 public interface AddressBookDataAccess {
@@ -17,8 +18,8 @@ public interface AddressBookDataAccess {
 
    // Insert a new person. Return boolean indicating 
    // success or failure.
-   public boolean newPerson( AddressBookEntry person )
-      throws DataAccessException;
+   public int newPerson( AddressBookEntry person )
+           throws DataAccessException, IOException;
       
    // Delete specified person. Return boolean indicating if 
    // success or failure.
